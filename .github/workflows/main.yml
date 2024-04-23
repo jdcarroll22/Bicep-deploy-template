@@ -1,0 +1,40 @@
+name: Manual Trigger Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+        env_variables_path:
+            description: This is the file that points to the loades env variables for the required deployment
+            required: true
+            default: env.json
+        main_bicep_file_path:
+            description: This is the bicep file that will be deployed. it references all the Bicep Modules.
+            required: true
+            default: main.bicep
+        bicep_parameters:
+            description: Path to parameters file (leave empty if not used)
+            required: false
+        resourceGroupName:
+            description: The name of the Resource Group that you are going to create.
+            required: true
+        resourceGroupLocation:
+            description: What region are you deploying your application too?
+            required: true
+
+jobs:
+  placeholder_job:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Clone down Example Repository 
+      uses: actions/checkout@v3
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+
+    - name: Run Custom Bicep Action
+      uses: ./bicep-deploy
+      with:
+        main_bicep_file_path: main.bicep
+        resourceGroupName: ExampleRG
+        resourceGroupLocation: US East
+        CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+        AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+        AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
