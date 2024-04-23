@@ -22,7 +22,7 @@ on:
             required: true
 
 jobs:
-  placeholder_job:
+  Deploy_Bicep:
     runs-on: ubuntu-latest
     steps:
     - name: Clone down Example Repository 
@@ -30,7 +30,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
 
     - name: Run Custom Bicep Action
-      uses: jdcarroll22/devops-actions/bicep-deploy
+      uses: jdcarroll22/devops-actions/bicep-deploy@main
       with:
         main_bicep_file_path: main.bicep
         resourceGroupName: ExampleRG
