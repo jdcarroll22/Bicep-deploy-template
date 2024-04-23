@@ -38,7 +38,7 @@ jobs:
       with:
         main_bicep_file_path: main.bicep
         resourceGroupName: ExampleRG
-        resourceGroupLocation: US East
+        resourceGroupLocation: 'East US'
         CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
         AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
         AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
