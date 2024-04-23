@@ -21,9 +21,11 @@ on:
         resourceGroupName:
             description: The name of the Resource Group that you are going to create.
             required: true
+            default: ExampleRG
         resourceGroupLocation:
             description: What region are you deploying your application too?
             required: true
+            default: 'East US'
 
 jobs:
   Deploy_Bicep:
