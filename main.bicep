@@ -1,7 +1,7 @@
 param location string = resourceGroup().location
 
 module storageModule './modules/storage-account/storage-account.bicep' = {
-  name: 'Jeff Deployment'
+  name: 'JeffDeployment'
   params: {
     storageAccountName: 'myUniqueStorageAccountName'
     location: location
