@@ -9,3 +9,12 @@ module storageModule './modules/storage-account/storage-account.bicep' = {
     kind: 'StorageV2'
   }
 }
+
+
+module dataFactory './modules/azure-data-factory/azure-data-factory.bicep' = {
+  name: 'jeff-carroll-adf'
+  params: {
+    dataFactoryName: 'Jeff'
+    location: location
+  }
+}
