@@ -16,8 +16,8 @@ jobs:
   DestroyResourceGroup:
     runs-on: ubuntu-latest
     steps:
-      - name: Run Custom Bicep Action
-        uses:  jdcarroll22/devops-actions/bicep-destroy@main
+      - name: Run Bicep Destroy Action
+        uses:  jdcarroll22/devops-actions/delete-resource-group@main
         with:
           resourceGroupName: ${{ inputs.resourceGroupName }}
           CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
