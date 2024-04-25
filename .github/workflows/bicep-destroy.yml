@@ -1,0 +1,25 @@
+name: Bicep Destroy
+
+permissions:
+  id-token: write
+  contents: read
+
+# Controls when the action will run. This workflow can be triggered manually from the GitHub UI.
+on:
+  workflow_dispatch:
+    inputs:
+      resourceGroupName:
+        description: The name of the Resource Group that you are going to create.
+        required: true
+
+jobs:
+  DestroyResourceGroup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Custom Bicep Action
+        uses: ./bicep-destroy
+        with:
+          resourceGroupName: ${{ inputs.resourceGroupName }}
+          CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
