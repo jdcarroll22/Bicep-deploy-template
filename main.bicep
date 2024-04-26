@@ -14,7 +14,8 @@ module storageModule './modules/storage-account/storage-account.bicep' = {
 module dataFactory './modules/azure-data-factory/azure-data-factory.bicep' = {
   name: 'jeff-carroll-adf'
   params: {
-    dataFactoryName: 'gsdfgseertg1234sdfrw45tsg'
+    factoryName: 'gsdfgseertg1234sdfrw45tsg'
     location: location
+    vnetName: 'Jeff-vnet'
   }
 }
