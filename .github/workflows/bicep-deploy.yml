@@ -35,7 +35,7 @@ jobs:
       uses: actions/checkout@v3
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
 
-    - name: Run Custom Bicep Action
+    - name: Deploy Bicep Action
       uses: jdcarroll22/devops-actions/bicep-deploy@main
       with:
         main_bicep_file_path: main.bicep
