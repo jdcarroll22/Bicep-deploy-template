@@ -1,5 +1,8 @@
 param location string = resourceGroup().location
 
+@secure()
+param adminPassword string = readEnvironmentVariable('admin_password', newGuid())
+
 module storageModule './modules/storage-account/storage-account.bicep' = {
   name: 'JeffDeployment'
   params: {
@@ -11,11 +14,47 @@ module storageModule './modules/storage-account/storage-account.bicep' = {
 }
 
 
-module dataFactory './modules/azure-data-factory/azure-data-factory.bicep' = {
+module dataFactory './modules/azure-data-factory/azure-data-factory-2.bicep' = {
   name: 'jeff-carroll-adf'
   params: {
-    factoryName: 'gsdfgseertg1234sdfrw45tsg'
+    deploymentStage: 'dev'
+    applicationName: 'jeffApp'
+    applicationId: 'a'
+    businessUnit: 'SET'
     location: location
-    vnetName: 'Jeff-vnet'
+    tags: {
+      deploymentStage: 'dev'
+      applicationName: 'jeffApp'
+      applicationId: 'a'
+      businessUnit: 'SET'
+    }
+    stName: storageModule.name
+    sqlServerName: sqlServer.name
+    sqlDbNames: [
+      db.name
+    ]
+  }
+}
+
+module sqlServer './modules/sql-server/sql-server.bicep' = {
+  name: 'jeffSqlServer'
+  
+  params: {
+    location: location
+    administratorLogin: 'sql-server-admin'
+    administratorLoginPassword: adminPassword
+    sqlServerName: 'jeffSqlServer'
+    
+  }
+}
+
+
+module db './modules/sql-db/sql-db.bicep' = {
+  name: 'jeffdb'
+
+  params: {
+    location: location
+    sqlServerName: sqlServer.name
+    databaseName: 'jeffDb'
   }
 }
