@@ -1,7 +1,7 @@
 param location string = resourceGroup().location
 
 @secure()
-param adminPassword string = readEnvironmentVariable('admin_password', newGuid())
+param adminPassword string = newGuid()
 
 module storageModule './modules/storage-account/storage-account.bicep' = {
   name: 'JeffDeployment'
